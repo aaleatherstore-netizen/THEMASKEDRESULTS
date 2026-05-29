@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify Store Expert | Professional eCommerce Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00c853;
+    --green-dark: #009624;
+    --green-glow: rgba(0,200,83,0.18);
+    --bg: #0a0f0d;
+    --bg2: #111a14;
+    --bg3: #162019;
+    --text: #e8f5e9;
+    --muted: #7a9e80;
+    --border: rgba(0,200,83,0.15);
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,15,13,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: #000;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover { background: #00e676; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,200,83,0.35); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,200,83,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-glow);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge .dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+
+  h1 .accent { color: var(--green); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin: 20px 0 36px;
+    max-width: 480px;
+    font-weight: 300;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover { background: #00e676; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,200,83,0.4); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    animation: fadeUp 0.8s ease 0.2s both;
+    box-shadow: 0 0 60px rgba(0,200,83,0.06);
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(0,200,83,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .card-tag {
+    font-size: 0.75rem;
+    color: var(--green);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+
+  .store-preview {
+    background: var(--bg3);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 20px;
+  }
+
+  .store-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .store-dots { display: flex; gap: 6px; }
+  .store-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .store-dots span:nth-child(1) { background: #ff5f57; }
+  .store-dots span:nth-child(2) { background: #febc2e; }
+  .store-dots span:nth-child(3) { background: #28c840; }
+
+  .store-url {
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .store-body { display: flex; flex-direction: column; gap: 10px; }
+
+  .store-banner {
+    height: 80px;
+    background: linear-gradient(135deg, #1a2e1c, #0d1f10);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green);
+    border: 1px solid var(--border);
+  }
+
+  .store-products { display: flex; gap: 8px; }
+
+  .product-card {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .product-img {
+    width: 100%; height: 50px;
+    background: linear-gradient(135deg, #1e2e20, #162019);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  .product-name { font-size: 0.65rem; color: var(--muted); margin-bottom: 4px; }
+  .product-price { font-size: 0.75rem; color: var(--green); font-weight: 600; }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .metric {
+    background: var(--bg3);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .metric-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  .metric-label { font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    background: var(--bg2);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .trust-icon { font-size: 1.2rem; }
+
+  /* SECTION STYLES */
+  section { padding: 90px 5%; }
+
+  .section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  .center { text-align: center; }
+  .center .section-sub { margin: 0 auto; }
+
+  /* PACKAGES */
+  .packages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 52px auto 0;
+  }
+
+  .package {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .package:hover {
+    border-color: var(--green);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,200,83,0.12);
+  }
+
+  .package.featured {
+    border-color: var(--green);
+    background: linear-gradient(135deg, #0f1f12, var(--bg2));
+    box-shadow: 0 0 40px rgba(0,200,83,0.15);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -13px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: #000;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 18px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .pkg-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .pkg-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin: 14px 0 6px;
+  }
+
+  .pkg-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+
+  .pkg-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 22px; }
+
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+  .pkg-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .pkg-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pkg-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border: none;
+  }
+
+  .pkg-btn-outline {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+
+  .pkg-btn-outline:hover { background: var(--green-glow); }
+
+  .pkg-btn-fill {
+    background: var(--green);
+    color: #000;
+  }
+
+  .pkg-btn-fill:hover { background: #00e676; box-shadow: 0 8px 24px rgba(0,200,83,0.35); }
+
+  /* PROCESS */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 52px auto 0;
+  }
+
+  .process-step {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 22px;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .process-step:hover { border-color: var(--green); box-shadow: 0 12px 32px rgba(0,200,83,0.1); }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(0,200,83,0.15);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .step-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--bg2); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 52px auto 0;
+  }
+
+  .testimonial {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    transition: all 0.3s;
+  }
+
+  .testimonial:hover { border-color: var(--green); transform: translateY(-3px); }
+
+  .stars { color: #ffd700; font-size: 0.9rem; margin-bottom: 14px; }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+
+  .author-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    flex-shrink: 0;
+  }
+
+  .author-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+  .author-biz { font-size: 0.78rem; color: var(--muted); }
+
+  /* LEAD FORM */
+  .form-section {
+    background: linear-gradient(135deg, #0d1f10, var(--bg));
+  }
+
+  .form-container {
+    max-width: 620px;
+    margin: 52px auto 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 44px 40px;
+    box-shadow: 0 0 80px rgba(0,200,83,0.1);
+    position: relative;
+  }
+
+  .form-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    border-radius: 2px;
+  }
+
+  .form-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .form-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 30px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { margin-bottom: 18px; }
+
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--green);
+    background: rgba(0,200,83,0.04);
+    box-shadow: 0 0 0 3px rgba(0,200,83,0.1);
+  }
+
+  input::placeholder, textarea::placeholder { color: rgba(122,158,128,0.5); }
+
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a9e80' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+
+  select option { background: var(--bg2); }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 17px;
+    background: var(--green);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.3px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .submit-btn:hover { background: #00e676; box-shadow: 0 12px 32px rgba(0,200,83,0.45); transform: translateY(-1px); }
+
+  .form-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 760px;
+    margin: 52px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .faq-item:hover { border-color: rgba(0,200,83,0.3); }
+
+  .faq-q {
+    padding: 20px 24px;
+    font-weight: 500;
+    font-size: 0.98rem;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .faq-q:hover { color: var(--green); }
+
+  .faq-icon {
+    color: var(--green);
+    font-size: 1.3rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    padding: 0 24px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding: 0 24px 20px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 40px 5%;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .footer-logo span { color: var(--green); }
+
+  .footer-text { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 200;
+    background: #25d366;
+    border-radius: 50%;
+    width: 58px; height: 58px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: all 0.25s;
+    animation: waBounce 2s ease 2s infinite;
+  }
+
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.55); }
+
+  @keyframes waBounce {
+    0%, 90%, 100% { transform: scale(1); }
+    95% { transform: scale(1.08); }
+  }
+
+  .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+  /* SUCCESS MSG */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .success-msg .big-check { font-size: 3.5rem; margin-bottom: 14px; }
+  .success-msg h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .success-msg p { color: var(--muted); font-size: 0.95rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .packages { grid-template-columns: 1fr; max-width: 420px; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 4%; }
+    .hero { padding: 100px 4% 60px; }
+    section { padding: 64px 4%; }
+    .form-container { padding: 32px 22px; }
+    .form-row { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .trust-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Store<span>Craft</span></div>
+  <a href="#contact" class="nav-cta">Free Consultation →</a>
+</nav>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/923001234567?text=Assalam%20o%20Alaikum!%20Main%20apna%20Shopify%20store%20banwana%20chahta%20hun." class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="badge"><span class="dot"></span> Pakistan's Trusted Shopify Expert</div>
+      <h1>Aapka Dream<br><span class="accent">Shopify Store</span><br>3 Din Mein Ready</h1>
+      <p class="hero-sub">Professional eCommerce store jo aapke customers ko instantly trust karaaye — aur sales shuru karaaye. Zero se launch tak, hum sambhaltey hain.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">🚀 Free Consult Lo Abhi</a>
+        <a href="#packages" class="btn-secondary">Packages Dekhein →</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-tag">✦ Live Store Preview</div>
+      <div class="store-preview">
+        <div class="store-top">
+          <div class="store-dots"><span></span><span></span><span></span></div>
+          <div class="store-url">yourstore.myshopify.com</div>
+        </div>
+        <div class="store-body">
+          <div class="store-banner">🛒 YOUR BRAND STORE</div>
+          <div class="store-products">
+            <div class="product-card"><div class="product-img">👟</div><div class="product-name">Product 1</div><div class="product-price">Rs. 2,500</div></div>
+            <div class="product-card"><div class="product-img">👜</div><div class="product-name">Product 2</div><div class="product-price">Rs. 1,800</div></div>
+            <div class="product-card"><div class="product-img">⌚</div><div class="product-name">Product 3</div><div class="product-price">Rs. 3,200</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">150+</div><div class="metric-label">Stores Built</div></div>
+        <div class="metric"><div class="metric-val">3 Din</div><div class="metric-label">Delivery</div></div>
+        <div class="metric"><div class="metric-val">5★</div><div class="metric-label">Rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🔒</span> 100% Secure Payment</div>
+  <div class="trust-item"><span class="trust-icon">✅</span> Verified Shopify Partner</div>
+  <div class="trust-item"><span class="trust-icon">🔄</span> Free Revisions</div>
+  <div class="trust-item"><span class="trust-icon">📞</span> 30-Day Support</div>
+  <div class="trust-item"><span class="trust-icon">⚡</span> Fast Delivery</div>
+</div>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="center">
+    <div class="section-label">Pricing Plans</div>
+    <h2 class="section-title">Apna Budget Choose Karein</h2>
+    <p class="section-sub">Har size ke business ke liye affordable packages — seedha result ke saath.</p>
+  </div>
+  <div class="packages">
+    <div class="package">
+      <div class="pkg-name">🌱 Starter</div>
+      <div class="pkg-price">Rs. 15,000 <span>/ once</span></div>
+      <div class="pkg-desc">Naya business shuru karne walon ke liye</div>
+      <ul class="pkg-features">
+        <li>Professional Shopify Store</li>
+        <li>Up to 20 Products Setup</li>
+        <li>Mobile Responsive Design</li>
+        <li>Basic SEO Setup</li>
+        <li>Payment Gateway Integration</li>
+        <li>7-Day Support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn pkg-btn-outline">Get Started</a>
+    </div>
+    <div class="package featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="pkg-name">🚀 Professional</div>
+      <div class="pkg-price">Rs. 35,000 <span>/ once</span></div>
+      <div class="pkg-desc">Serious sellers ke liye jo scale karna chahte hain</div>
+      <ul class="pkg-features">
+        <li>Premium Custom Theme</li>
+        <li>Up to 50 Products Setup</li>
+        <li>Advanced SEO + Speed Optimization</li>
+        <li>WhatsApp Integration</li>
+        <li>Facebook Pixel Setup</li>
+        <li>Abandoned Cart Recovery</li>
+        <li>30-Day Priority Support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn pkg-btn-fill">Choose This →</a>
+    </div>
+    <div class="package">
+      <div class="pkg-name">💎 Enterprise</div>
+      <div class="pkg-price">Rs. 70,000 <span>/ once</span></div>
+      <div class="pkg-desc">Established brands ke liye full solution</div>
+      <ul class="pkg-features">
+        <li>100% Custom Branded Store</li>
+        <li>Unlimited Products</li>
+        <li>Full Marketing Setup (Meta + Google)</li>
+        <li>Custom Domain + SSL</li>
+        <li>Advanced Analytics Dashboard</li>
+        <li>1-on-1 Training Session</li>
+        <li>60-Day Dedicated Support</li>
+      </ul>
+      <a href="#contact" class="pkg-btn pkg-btn-outline">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="background: var(--bg2);">
+  <div class="center">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Simple 4-Step Process</h2>
+    <p class="section-sub">Confusion-free journey — aap sirf idea laiye, baaki hum karengy.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title">Free Consultation</div>
+      <div class="step-desc">Aapki requirements sunna, best plan suggest karna — bilkul free mein.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Agreement & Advance</div>
+      <div class="step-desc">Simple contract sign karein, 50% advance deposit karein — kaam shuru.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-icon">⚙️</div>
+      <div class="step-title">Store Development</div>
+      <div class="step-desc">Daily progress updates milein ge — 3 din mein aapka store ready.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title">Launch & Support</div>
+      <div class="step-desc">Store handover, training session, aur 30-day free support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg">
+  <div class="center">
+    <div class="section-label">Client Reviews</div>
+    <h2 class="section-title">Clients Kya Kehte Hain</h2>
+    <p class="section-sub">150+ khush clients jo aaj successfully sell kar rahe hain.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Mera store exactly waisa bana jaise main chahta tha — professional design, fast loading, aur payment bhi perfectly kaam kar rahi hai. Pehle hi week mein 3 orders aa gaye!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: #1a3a1a; color: var(--green);">AK</div>
+        <div><div class="author-name">Ahmed Khan</div><div class="author-biz">Fashion Store — Lahore</div></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Delivery 3 din mein — exactly jaise promise kiya tha. Aur support bhi bohat acha hai, WhatsApp pe turant reply milta hai. Highly recommended!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: #1a2a3a; color: #4a9eff;">SB</div>
+        <div><div class="author-name">Sara Baig</div><div class="author-biz">Skincare Brand — Karachi</div></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-text">"Maine pehle kisi aur se store banwaya tha — bohat problems thin. Yahan se dobara banwaya toh raat din ka farq. Professional kaam, honest dealing."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: #2a1a2a; color: #c47aff;">MR</div>
+        <div><div class="author-name">Muhammad Raza</div><div class="author-biz">Electronics — Islamabad</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="form-section" id="contact">
+  <div class="center">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Free Consultation Book Karein</h2>
+    <p class="section-sub">Form fill karein — 2 ghantey mein reply guarantee. Koi hidden charges nahi.</p>
+  </div>
+  <div class="form-container">
+    <div id="form-wrap">
+      <div class="form-title">Apna Store Shuru Karein 🚀</div>
+      <div class="form-sub">Yeh consultation bilkul free hai — koi commitment nahi.</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Aapka Naam *</label>
+          <input type="text" id="name" placeholder="Muhammad Ali" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number *</label>
+          <input type="tel" id="phone" placeholder="03XX-XXXXXXX" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Business Type *</label>
+        <select id="biz">
+          <option value="">— Select karein —</option>
+          <option>Fashion / Clothing</option>
+          <option>Electronics / Gadgets</option>
+          <option>Skincare / Beauty</option>
+          <option>Food / Beverages</option>
+          <option>Home Decor</option>
+          <option>Dropshipping</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Package Interest</label>
+        <select id="pkg">
+          <option value="">— Select karein —</option>
+          <option>Starter — Rs. 15,000</option>
+          <option>Professional — Rs. 35,000</option>
+          <option>Enterprise — Rs. 70,000</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Koi Sawaal ya Requirements?</label>
+        <textarea id="msg" placeholder="Aapka store kaisa hona chahiye, koi special requirement, ya koi sawaal..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">
+        ⚡ Abhi Free Consult Book Karein
+      </button>
+      <div class="form-guarantee">🔒 Aapki info 100% private — kisi ke saath share nahi hogi</div>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <div class="big-check">✅</div>
+      <h3>Form Submit Ho Gaya!</h3>
+      <p>Shukriya! Hum 2 ghantey mein aapke WhatsApp pe contact karengy.<br><br>Tab tak aap hamare portfolio dekh saktey hain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="center">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common Sawalaat</h2>
+    <p class="section-sub">Jo aksar loog puchhtey hain — seedhe jawab.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Kya main Shopify ke baare mein kuch jaane baghair store banwa sakta hun? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Bilkul! Aapko kuch jaanne ki zaroorat nahi. Hum shuru se aakhir tak sambhaltey hain aur delivery ke baad training bhi dete hain taake aap asaani se apna store manage kar sakein.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Payment kaisy karni hai — safe hai? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Payment bilkul safe hai. Hum 50% advance lete hain — baaki 50% sirf tab jab aap store dekh kar khush ho jaayein. Bank transfer ya Easypaisa/JazzCash — jo aapko suit kare.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Kya store delivery ke baad koi changes karwaa sakta hun? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Haan! Delivery ke baad hum free revisions dete hain. Agar koi cheez aapko pasand nahi toh hum change karengy — bina kisi extra charge ke.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Shopify ki monthly fee kaun dega? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Shopify ka Basic plan $29/month hai jo aap khud Shopify ko directly pay karte hain. Hum sirf store banane ka charge lete hain — koi hidden fee nahi.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Pakistan mein Shopify se online payment ho sakti hai? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Haan! Hum aapke store mein multiple payment methods setup karte hain — Cash on Delivery (most popular), bank transfer, aur Stripe bhi (if eligible). Aapka koi sale nahi rukeyga.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Store<span>Craft</span></div>
+  <div class="footer-text">Pakistan ka trusted Shopify store development service<br>📍 Available across Pakistan | 🕐 Mon-Sat 9AM–9PM</div>
+  <div class="footer-links">
+    <a href="#packages">Packages</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/923001234567" target="_blank">WhatsApp</a>
+  </div>
+  <div style="margin-top:20px; font-size:0.75rem; color: rgba(122,158,128,0.4);">© 2025 StoreCraft. All rights reserved.</div>
+</footer>
+
+<script>
+  // FAQ Toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form Submit
+  function submitForm() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const biz = document.getElementById('biz').value;
+    if (!name || !phone || !biz) {
+      alert('Please naam, WhatsApp number aur business type zaroor fill karein.');
+      return;
+    }
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+
+    // WhatsApp redirect
+    const pkg = document.getElementById('pkg').value || 'Not selected';
+    const msg = document.getElementById('msg').value || '';
+    const waMsg = `Assalam o Alaikum! Main apna Shopify store banwana chahta hun.\n\nNaam: ${name}\nBusiness: ${biz}\nPackage: ${pkg}\n${msg ? 'Message: ' + msg : ''}`;
+    setTimeout(() => {
+      window.open(`https://wa.me/923001234567?text=${encodeURIComponent(waMsg)}`, '_blank');
+    }, 1500);
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.package, .process-step, .testimonial, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
