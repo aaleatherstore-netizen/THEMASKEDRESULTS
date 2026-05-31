@@ -935,5 +935,22 @@ ${msg ? '💬 Note: ' + msg : ''}`;
     observer.observe(el);
   });
 </script>
+  <script>
+document.getElementById("leadForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    fbq('track', 'Lead', {
+        content_name: 'Consultation Form',
+        status: true
+    });
+
+    setTimeout(() => {
+        this.submit();
+    }, 1500);
+
+});
+</script>
 </body>
 </html>
