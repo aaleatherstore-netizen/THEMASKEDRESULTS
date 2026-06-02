@@ -305,7 +305,8 @@
     .hero-btns .btn-primary, .hero-btns .btn-secondary { width:100%;justify-content:center; }
   }
 </style>
-  <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
+
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -322,9 +323,7 @@ fbq('track','Lead');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1709795070024305&ev=PageView&noscript=1"
 /></noscript>
-
 <!-- End Meta Pixel Code -->
-
   <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -341,7 +340,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1464886395414002&ev=PageView&noscript=1"
 /></noscript>
-  
 </head>
 <body>
 
@@ -901,45 +899,91 @@ src="https://www.facebook.com/tr?id=1464886395414002&ev=PageView&noscript=1"
     if (!isOpen) item.classList.add('open');
   }
 
-  function submitForm() {
-    const name = document.getElementById('f-name').value.trim();
+  // ── REPLACE THESE TWO URLS AFTER SETUP ──
+  const GETFORM_URL    = 'PASTE_YOUR_GETFORM_URL_HERE';
+  const GSHEET_URL     = 'https://script.google.com/macros/s/AKfycbyF-zbanCash_ttwWGA0qJ31qTPm-yGwDZDP7eeVbYri5CuHt7LUcXEOyYkECR6_-tSDA/exec';
+
+  async function submitForm() {
+    const name  = document.getElementById('f-name').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const niche = document.getElementById('f-niche').value;
+
     if (!name || !phone || !niche) {
       alert('Please naam, WhatsApp number aur niche zaroor fill karein.');
       return;
     }
-    const brand = document.getElementById('f-brand').value || 'Not provided';
-    const city = document.getElementById('f-city').value || 'Not specified';
-    const pkg = document.getElementById('f-pkg').value || 'Not selected';
-    const budget = document.querySelector('input[name="budget"]:checked')?.value || 'Not selected';
-    const ads = document.querySelector('input[name="ads"]:checked')?.value || 'Not answered';
-    const adsBudget = document.querySelector('input[name="adsbudget"]:checked')?.value || 'N/A';
-    const ready = document.querySelector('input[name="ready"]:checked')?.value || 'Not answered';
-    const storetype = document.querySelector('input[name="storetype"]:checked')?.value || 'Not selected';
-    const msg = document.getElementById('f-msg').value || '';
 
+    // Disable button + show loading
+    const btn = document.querySelector('.submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span style="display:inline-block;animation:spin 0.8s linear infinite">⏳</span> Saving...';
+
+    const data = {
+      naam:      name,
+      phone:     phone,
+      brand:     document.getElementById('f-brand').value || 'Not provided',
+      city:      document.getElementById('f-city').value  || 'Not specified',
+      niche:     niche,
+      storetype: document.querySelector('input[name="storetype"]:checked')?.value || 'Not selected',
+      package:   document.getElementById('f-pkg').value   || 'Not selected',
+      budget:    document.querySelector('input[name="budget"]:checked')?.value    || 'Not selected',
+      ads:       document.querySelector('input[name="ads"]:checked')?.value       || 'Not answered',
+      adsbudget: document.querySelector('input[name="adsbudget"]:checked')?.value || 'N/A',
+      ready:     document.querySelector('input[name="ready"]:checked')?.value     || 'Not answered',
+      message:   document.getElementById('f-msg').value   || ''
+    };
+
+    // 1) GETFORM — form data save
+    const getformPromise = fetch(GETFORM_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => null); // fail silently
+
+    // 2) GOOGLE SHEETS — JSON POST
+    const sheetPromise = fetch(GSHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => null); // fail silently
+
+    // Wait for both (max 5s)
+    await Promise.race([
+      Promise.allSettled([getformPromise, sheetPromise]),
+      new Promise(r => setTimeout(r, 5000))
+    ]);
+
+    // Show success
     document.getElementById('form-wrap').style.display = 'none';
     document.getElementById('success-msg').style.display = 'block';
 
-    const waMsg = `Assalam o Alaikum! The Masked Results se contact kar raha hun 🙏
+    // 3) WhatsApp redirect after 1.5s
+    const waMsg =
+`Assalam o Alaikum! The Masked Results se contact kar raha hun 🙏
 
-👤 Naam: ${name}
-🏷️ Brand: ${brand}
-📍 City: ${city}
-🛒 Niche: ${niche}
-🏪 Store Type: ${storetype}
-📦 Package: ${pkg}
-💰 Store Budget: ${budget}
-📱 Meta Ads: ${ads}
-📊 Ads Budget: ${adsBudget}
-✅ Products: ${ready}
-${msg ? '💬 Note: ' + msg : ''}`;
+👤 Naam: ${data.naam}
+📞 WhatsApp: ${data.phone}
+🏷️ Brand: ${data.brand}
+📍 City: ${data.city}
+🛒 Niche: ${data.niche}
+🏪 Store Type: ${data.storetype}
+📦 Package: ${data.package}
+💰 Store Budget: ${data.budget}
+📱 Meta Ads: ${data.ads}
+📊 Ads Budget: ${data.adsbudget}
+✅ Products: ${data.ready}
+${data.message ? '💬 Note: ' + data.message : ''}`;
 
     setTimeout(() => {
       window.open(`https://wa.me/923088771533?text=${encodeURIComponent(waMsg)}`, '_blank');
     }, 1500);
   }
+
+  // Spin animation for loading
+  const spinStyle = document.createElement('style');
+  spinStyle.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+  document.head.appendChild(spinStyle);
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -953,23 +997,6 @@ ${msg ? '💬 Note: ' + msg : ''}`;
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
-</script>
-  <script>
-document.getElementById("leadForm")
-.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    fbq('track', 'Lead', {
-        content_name: 'Consultation Form',
-        status: true
-    });
-
-    setTimeout(() => {
-        this.submit();
-    }, 1500);
-
-});
 </script>
 </body>
 </html>
