@@ -1,0 +1,21 @@
+{
+  "name": "themaskedresults",
+  "version": "1.0.0",
+  "description": "The Masked Results - Shopify Store & Meta Ads Experts",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000"
+  },
+  "keywords": [
+    "shopify",
+    "ecommerce",
+    "meta-ads",
+    "landing-page"
+  ],
+  "author": "The Masked Results",
+  "license": "ISC",
+  "analytics": {
+    "provider": "vercel",
+    "note": "Analytics implemented via CDN script tag in HTML files"
+  }
+}
